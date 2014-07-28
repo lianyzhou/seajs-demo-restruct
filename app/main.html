@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- build:css css/main.css -->
+		<link rel="stylesheet" href="css/common/reset.css"/>
+		<link rel="stylesheet" href="css/common/common.css"/>
+		<!-- endbuild -->
+		<!-- build:css css/vendor.css -->
+		<link rel="stylesheet" href="css/vendors/asyncbox/asyncbox.css"/>
+		<link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.css"/>
+		<!-- endbuild -->
+	</head>
+	<body>
+		<div class="W_main">
+			<div class="W_main_news_category" id="pl_newspaper_news_category"></div>
+			<div class="W_main_news_list" id="pl_newspaper_news_content"></div>
+		</div>
+		<script src="scripts/vendors/sea.js"></script>
+		<script src="scripts/vendors/jquery.js"></script>
+		<script>
+		(function() {
+			
+			var PRODUCTION = true;
+			
+			var JS_VER = "0.0.3";
+						
+			(function() {
+				if(PRODUCTION) {
+					var map = [];
+				    map.push([/^(.*\.(?:js))(.*)$/i, function(e) {
+			    		return e += "?v=" + JS_VER;
+			        }]);
+				    seajs.config({map: map})	
+				}
+			})();			
+			
+			seajs.config({
+				base : "/scripts",
+				preload : ["page/base"]
+			});
+			
+			seajs.use("page/newspaper" , function(newsPaper) {
+				newsPaper.init();
+			});	
+			
+		})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+*.jar
+target
+classes
+*.class
+.settings
+.classpath
+.project
+node_modules
+log
+bin
+tmp
+dist
+.tmp
+.build

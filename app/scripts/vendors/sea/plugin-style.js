@@ -1,5 +1,4 @@
 define(function(require,exports,module) {
-	var RE_NON_WORD = /\W/g
 	var doc = document
 	var head = document.getElementsByTagName('head')[0] ||
 	    document.documentElement
@@ -7,9 +6,6 @@ define(function(require,exports,module) {
 	
 	seajs.importStyle = function(cssText, id) {
 	  if (id) {
-	    // Convert id to valid string
-	    id = id.replace(RE_NON_WORD, '-')
-	
 	    // Don't add multiple times
 	    if (doc.getElementById(id)) return
 	  }

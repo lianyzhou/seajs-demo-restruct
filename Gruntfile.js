@@ -207,7 +207,7 @@ module.exports = function(grunt){
 	    ,'rev'
     	,'usemin'
     	,'imagemin'
-    	,'htmlmin'
+//    	,'htmlmin'
     	,'transport'
     	
     	,'cmdconcat'

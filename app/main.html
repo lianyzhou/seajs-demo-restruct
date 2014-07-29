@@ -24,23 +24,28 @@
 			var PRODUCTION = true;
 			
 			var JS_VER = "0.0.3";
-						
+			
+			var debug = location.href.indexOf("debug=true") >= 0;
+			
+			function getPage(url) {
+				return debug ? url + "-debug" : url;
+			}
+			
 			(function() {
 				if(PRODUCTION) {
 					var map = [];
-				    map.push([/^(.*\.(?:js))(.*)$/i, function(e) {
-			    		return e += "?v=" + JS_VER;
-			        }]);
+					map.push([/^(.*\.(?:js))(.*)$/i, function(e) {
+			    		return e + "?v=" + JS_VER;
+			        }]);		
 				    seajs.config({map: map})	
 				}
 			})();			
 			
 			seajs.config({
 				base : "/scripts",
-				preload : ["page/base"]
+				preload : [getPage("page/base")]
 			});
-			
-			seajs.use("page/newspaper" , function(newsPaper) {
+			seajs.use(getPage("page/newspaper") , function(newsPaper) {
 				newsPaper.init();
 			});	
 			

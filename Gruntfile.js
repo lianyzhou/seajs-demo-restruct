@@ -3,7 +3,7 @@ module.exports = function(grunt){
 	var transport = require('grunt-antrol-transport');
 	
     var style = transport.style.init(grunt);
-    var text = transport.text.init(grunt);
+    var template = transport.template.init(grunt);
     var script = transport.script.init(grunt);
 	
 
@@ -22,9 +22,8 @@ module.exports = function(grunt){
     			parsers : {
                     '.js' : [script.jsParser],
                     '.css' : [style.css2jsParser],
-                    '.tpl' : [text.html2jsParser]
-                },
-                debug : false
+                    '.tpl' : [template.tplParser]
+                }
     		},
     		dest : {
 	            files: [{
@@ -48,8 +47,7 @@ module.exports = function(grunt){
     				src : 'page/*.js',
     				expand : true,
     				dest : '<%= yeoman.dist %>/scripts'
-    			}
-    			]
+    			}]
     		}
     	},
     	useminPrepare: {
@@ -132,7 +130,7 @@ module.exports = function(grunt){
 	         files: [{
 	         	expand : true,
 	         	cwd : '<%= yeoman.dist %>/scripts/',
-	         	src : ["page/*.js"],
+	         	src : ["page/*.js","!page/*-debug.js"],
 	         	dest : '<%= yeoman.dist %>/scripts'
 	         }]
 	       }
